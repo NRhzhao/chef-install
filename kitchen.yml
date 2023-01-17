@@ -31,4 +31,3 @@ suites:
   - name: install
     run_list:
       - recipe[install_chef::default]
-
