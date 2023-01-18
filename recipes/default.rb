@@ -1,5 +1,5 @@
-#
-# Cookbook:: chef-install
-# Recipe:: default
-#
-# Copyright:: 2023, The Authors, All Rights Reserved.
+if platform?('windows')
+  include_recipe 'guided-install::guided_install_windows'
+else
+  include_recipe 'guided-install::guided_install_linux'
+end

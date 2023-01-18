@@ -1,8 +1,37 @@
-default['newrelic_install']['env']['api_key'] = nil
-default['newrelic_install']['env']['account_id'] = nil
-default['newrelic_install']['env']['region'] = 'US'
-default['newrelic_install']['env']['proxy_url'] = nil
-default['newrelic_install']['install_names'] = []
-default['newrelic_install']['tags'] = []
-default['newrelic_install']['vebosity'] = 'info'
-default['newrelic_install']['timeout_seconds'] = 600
+############
+# REQUIRED #
+############
+
+default["guided_install"]["EnvironmentVariables"]["NEW_RELIC_API_KEY"] = nil
+default["guided_install"]["EnvironmentVariables"]["NEW_RELIC_ACCOUNT_ID"] = nil
+
+
+############
+# OPTIONAL #
+############
+
+default["guided_install"]["EnvironmentVariables"]["NEW_RELIC_REGION"] = "US"
+default["guided_install"]["EnvironmentVariables"]["HTTPS_PROXY"] = nil
+
+default["guided_install"]["Verbosity"] = nil
+
+####################
+# TARGETED INSTALL #
+####################
+
+default["guided_install"]["InstallName"] = ["infrastructure-agent-installer", "logs-integration"]
+
+########
+# TAGS #
+########
+
+default["guided_install"]["Tags"] = {
+    "Testing": 123,
+    "Testing2": "456"
+}
+
+################
+# CLI BEHAVIOR #
+################
+
+default["guided_install"]["TimeoutSeconds"] = 600
