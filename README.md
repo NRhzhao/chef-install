@@ -64,9 +64,9 @@ Refer to [testing](https://github.com/chef-cookbooks/community_cookbook_document
 
 ### Releasing new versions
 
-For releasing a new version to the [Chef Supermarket][12] follow this steps:
+For releasing a new version to the Chef Supermarket follow this steps:
 
-* Update the version number in [metadata.rb][13].
+* Update the version number in metadata.rb.
 * Create the github release for the new version.
 * Watch the build with the version number in Github Actions
 * If that passes, the new version should be on TBD
