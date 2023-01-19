@@ -5,7 +5,7 @@ unified_mode true
 
 property :new_relic_api_key,      String
 property :new_relic_account_id,   String
-property :install_names,          Array, default: %w[infrastructure-agent-installer logs-integration]
+property :install_names,          Array, default: %w(infrastructure-agent-installer logs-integration)
 property :env,                    Hash
 property :verbosity,              String
 property :timeout_seconds,        Integer, defaunt: 600
@@ -41,13 +41,13 @@ action_class do
   end
 
   def stringify_install_names(install_names)
-    install_names = %w[infrastructure-agent-installer logs-integration] if install_names.nil? || install_names.empty?
-    install_names = " -n #{install_names.join(',')}" unless install_names.nil? || install_names.empty?
+    install_names = %w(infrastructure-agent-installer logs-integration) if install_names.nil? || install_names.empty?
+    _ = " -n #{install_names.join(',')}" unless install_names.nil? || install_names.empty?
   end
 
   def get_verbosity(verbosity)
     verbosity_modes = %w[debug trace]
-    verbosity = " --#{verbosity}" if verbosity_modes.include? verbosity
+    _ = " --#{verbosity}" if verbosity_modes.include? verbosity
   end
 
   def get_tags(tags)
@@ -57,6 +57,6 @@ action_class do
       tags_array.append("#{key}:#{value}")
     end
     tags_array.append(deploy_tag)
-    tRes = " --tag #{tags_array.join(',')}"
+    _ = " --tag #{tags_array.join(',')}"
   end
 end
