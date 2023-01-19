@@ -51,7 +51,7 @@ jobs:
         uses: actionshub/yamllint@v1.1.1
 
   integration:
-    needs: lint-unit
+    needs: [rspec, cookstyle, yamllint]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -68,8 +68,7 @@ jobs:
           - 'ubuntu-2204'
 
         suite:
-          - system-install
-          - user-install
+          - default
       fail-fast: false
 
     steps:
@@ -82,6 +81,56 @@ jobs:
         env:
           CHEF_LICENSE: accept-no-persist
           KITCHEN_LOCAL_YAML: kitchen.dokken.yml
+        with:
+          suite: ${{ matrix.suite }}
+          os: ${{ matrix.os }}
+
+  integration-windows:
+    needs: [rspec, cookstyle, yamllint]
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        os:
+          - windows-latest
+        suite:
+          - windows
+      fail-fast: false
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Install Chef
+        uses: actionshub/chef-install@main
+      - name: test-kitchen
+        uses: actionshub/test-kitchen@main
+        env:
+          CHEF_LICENSE: accept-no-persist
+          KITCHEN_LOCAL_YAML: kitchen.exec.yml
+        with:
+          suite: ${{ matrix.suite }}
+          os: ${{ matrix.os }}
+
+  integration-macos:
+    needs: lint-unit
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+        suite:
+          - default
+      fail-fast: false
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Install Chef
+        uses: actionshub/chef-install@main
+      - name: test-kitchen
+        uses: actionshub/test-kitchen@main
+        env:
+          CHEF_LICENSE: accept-no-persist
+          KITCHEN_LOCAL_YAML: kitchen.exec.yml
         with:
           suite: ${{ matrix.suite }}
           os: ${{ matrix.os }}
