@@ -111,7 +111,7 @@ jobs:
           os: ${{ matrix.os }}
 
   integration-macos:
-    needs: lint-unit
+    needs: [rspec, cookstyle, yamllint]
     runs-on: macos-latest
     strategy:
       matrix:
