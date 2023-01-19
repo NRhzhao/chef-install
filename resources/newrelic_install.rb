@@ -46,7 +46,7 @@ action_class do
   end
 
   def get_verbosity(verbosity)
-    verbosity_modes = %w[debug trace]
+    verbosity_modes = %w(debug trace)
     _ = " --#{verbosity}" if verbosity_modes.include? verbosity
   end
 
