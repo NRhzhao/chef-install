@@ -1,5 +1,5 @@
 if platform?('windows')
-  include_recipe 'guided-install::guided_install_windows'
+  include_recipe 'chef-install::guided_install_windows'
 else
-  include_recipe 'guided-install::guided_install_linux'
+  include_recipe 'chef-install::guided_install_linux'
 end
