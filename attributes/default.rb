@@ -4,32 +4,32 @@
 # REQUIRED #
 ############
 
-default['chef_install']['env']['NEW_RELIC_API_KEY'] = ''
-default['chef_install']['env']['NEW_RELIC_ACCOUNT_ID'] = ''
+default['newrelic_install']['env']['NEW_RELIC_API_KEY'] = ''
+default['newrelic_install']['env']['NEW_RELIC_ACCOUNT_ID'] = ''
 
 ############
 # OPTIONAL #
 ############
 
-default['chef_install']['env']['NEW_RELIC_REGION'] = 'US'
-default['chef_install']['env']['HTTP_PROXY'] = nil
+default['newrelic_install']['env']['NEW_RELIC_REGION'] = 'US'
+default['newrelic_install']['env']['HTTP_PROXY'] = nil
 
-default['chef_install']['verbosity'] = ''
+default['newrelic_install']['verbosity'] = ''
 
 ####################
 # TARGETED INSTALL #
 ####################
 
-default['chef_install']['install_name'] = %w(infrastructure-agent-installer logs-integration)
+default['newrelic_install']['install_name'] = %w(infrastructure-agent-installer logs-integration)
 
 ########
 # TAGS #
 ########
 
-default['chef_install']['tags'] = {}
+default['newrelic_install']['tags'] = {}
 
 ################
 # CLI BEHAVIOR #
 ################
 
-default['chef_install']['timeout_seconds'] = 600
+default['newrelic_install']['timeout_seconds'] = 600
