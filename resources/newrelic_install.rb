@@ -28,6 +28,7 @@ action :install do
   else
     execute 'newrelic install' do
       command "curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo -E /usr/local/bin/newrelic install #{options}"
+      live_stream true
       environment new_resource.env
       timeout new_resource.timeout_seconds
     end

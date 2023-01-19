@@ -4,15 +4,15 @@
 # REQUIRED #
 ############
 
-default['chef_install']['env']['new_relic_api_key'] = ''
-default['chef_install']['env']['new_relic_account_id'] = ''
+default['chef_install']['env']['NEW_RELIC_API_KEY'] = ''
+default['chef_install']['env']['NEW_RELIC_ACCOUNT_ID'] = ''
 
 ############
 # OPTIONAL #
 ############
 
-default['chef_install']['env']['new_relic_region'] = 'US'
-default['chef_install']['env']['http_proxy'] = nil
+default['chef_install']['env']['NEW_RELIC_REGION'] = 'US'
+default['chef_install']['env']['HTTP_PROXY'] = nil
 
 default['chef_install']['verbosity'] = ''
 
