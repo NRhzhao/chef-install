@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ############
 # REQUIRED #
 ############
@@ -18,14 +20,14 @@ default['chef_install']['verbosity'] = ''
 # TARGETED INSTALL #
 ####################
 
-default['chef_install']['install_name'] = ['infrastructure-agent-installer', 'logs-integration']
+default['chef_install']['install_name'] = %w[infrastructure-agent-installer logs-integration]
 
 ########
 # TAGS #
 ########
 
 default['chef_install']['tags'] = {
-    'Testing': '123',
+  'Testing': '123'
 }
 
 ################

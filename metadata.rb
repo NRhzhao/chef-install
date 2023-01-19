@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 name 'newrelic-install'
 maintainer 'newrelic'
 maintainer_email 'hzhao@newrelic.com'

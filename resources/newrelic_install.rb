@@ -1,17 +1,18 @@
+# frozen_string_literal: true
+
 provides :newrelic_install
 unified_mode true
 
 property :new_relic_api_key,      String
 property :new_relic_account_id,   String
-property :install_names,          Array,          default: ['infrastructure-agent-installer', 'logs-integration']
+property :install_names,          Array, default: %w[infrastructure-agent-installer logs-integration]
 property :env,                    Hash
 property :verbosity,              String
-property :timeout_seconds,        Integer,        defaunt: 600
-property :tags,                   Hash,           default: Hash.new
+property :timeout_seconds,        Integer, defaunt: 600
+property :tags,                   Hash, default: {}
 
 action :install do
-
-  check_required()
+  check_required
   options = '-y'
   options += get_verbosity(new_resource.verbosity) unless new_resource.verbosity.nil? || new_resource.verbosity.empty?
   options += stringify_install_names(new_resource.install_names)
@@ -31,33 +32,31 @@ action :install do
       timeout new_resource.timeout_seconds
     end
   end
-
 end
 
 action_class do
-  def check_required()
+  def check_required
     raise 'Please specify your newrelic api key' if new_resource.new_relic_api_key.nil?
     raise 'Please specify your newrelic account key' if new_resource.new_relic_account_id.nil?
   end
 
   def stringify_install_names(install_names)
-    install_names = ['infrastructure-agent-installer', 'logs-integration'] if install_names.nil? || install_names.empty?
+    install_names = %w[infrastructure-agent-installer logs-integration] if install_names.nil? || install_names.empty?
     install_names = " -n #{install_names.join(',')}" unless install_names.nil? || install_names.empty?
   end
 
   def get_verbosity(verbosity)
-    verbosity_modes = ['debug', 'trace']
+    verbosity_modes = %w[debug trace]
     verbosity = " --#{verbosity}" if verbosity_modes.include? verbosity
   end
-  
+
   def get_tags(tags)
-	  deploy_tag = "nr_deployed_by:newrelic-chef"
-    tags_array = Array.new
+    deploy_tag = 'nr_deployed_by:newrelic-chef'
+    tags_array = []
     tags.each do |key, value|
       tags_array.append("#{key}:#{value}")
     end
     tags_array.append(deploy_tag)
-    tRes = " --tag " + tags_array.join(",")
-    
+    tRes = " --tag #{tags_array.join(',')}"
   end
 end
