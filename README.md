@@ -38,6 +38,23 @@ This is the only recipe that should be included in a node's run list.
 * Set any attributes necessary for your desired configuration
 * Add the `newrelic-install::default` recipe your run list
 
+#### Resource usage
+
+##### newrelic_install
+
+The `newrelic_install` resource manages will instrument newrelic using guided install with minimal configuration.
+
+##### Example
+
+```ruby
+newrelic_install 'install' do
+  action                   :install
+  new_relic_api_key        node['newrelic_install']['env']['NEW_RELIC_API_KEY']
+  new_relic_account_id     node['newrelic_install']['env']['NEW_RELIC_ACCOUNT_ID']
+  env                      node['newrelic_install']['env']
+end
+```
+
 ### Attributes
 
 #### Required
