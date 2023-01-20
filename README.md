@@ -2,7 +2,7 @@
 
 # newrelic-install cookbook for [Guided Install](https://docs.newrelic.com/docs/infrastructure/host-integrations/installation/new-relic-guided-install-overview/)
 
-`newrelic-install` is a chef cookbook that runs on newrlic cli, and is currently in experimental phase.
+`newrelic-install` is a chef cookbook created using on newrlic cli, and is currently in experimental phase.
 
 Currently, we have included Linux and Windows support for New Relic's infrastructure and logs integrations.
 
@@ -39,8 +39,6 @@ This is the only recipe that should be included in a node's run list.
 * Add the `newrelic-install::default` recipe your run list
 
 #### Resource usage
-
-##### newrelic_install
 
 The `newrelic_install` resource manages will instrument newrelic using guided install with minimal configuration.
 
