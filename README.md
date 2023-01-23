@@ -2,9 +2,15 @@
 
 # newrelic-install cookbook for [Guided Install](https://docs.newrelic.com/docs/infrastructure/host-integrations/installation/new-relic-guided-install-overview/)
 
-`newrelic-install` is a chef cookbook created using on newrlic cli, and is currently in experimental phase.
+`newrelic-install` is a chef cookbook created using on New Relic CLI, and is currently in experimental phase.
 
 Currently, we have included Linux and Windows support for New Relic's infrastructure and logs integrations.
+
+{% note %}
+
+**Note:** Specific version of agent install is not supported, New Relic CLI will always install latest released version of agent.
+
+{% endnote %}
 
 ## Installation
 
@@ -66,10 +72,10 @@ end
 
 | Name | Default value | Description |
 |:-----|:--------------|:------------|
-| `default['newrelic_install']['env']['NEW_RELIC_REGION']` | `US` | new relic region |
-| `default['newrelic_install']['env']['HTTP_PROXY']` | `nil` | proxy url if you are behind a firewall |
+| `default['newrelic_install']['env']['NEW_RELIC_REGION']` | `US` | new relic regions for your account (`US` or `EU`) |
+| `default['newrelic_install']['env']['HTTPS_PROXY']` | `nil` | proxy url if you are behind a firewall |
 | `default['newrelic_install']['verbosity']` | `nil` | Verbosity options for the installation (`debug` or `trace`). Writes verbose output to a log file on the host. |
-| `default['newrelic_install']['install_names']` | `%w(infrastructure-agent-installer log-integration)` | agents to be installed |
+| `default['newrelic_install']['targets']` | [] | agents to be installed, currently always install infrastructure and logs, more to come |
 | `default['newrelic_install']['tags']` | `{}` | key value pair tags added through custom attributes |
 | `default['newrelic_install']['timeout_seconds']` | `600` | Sets timeout for installation task. |
 

@@ -5,7 +5,7 @@ unified_mode true
 
 property :new_relic_api_key,      String
 property :new_relic_account_id,   String
-property :install_names,          Array, default: %w(infrastructure-agent-installer logs-integration)
+property :targets, Array, default: %w[infrastructure-agent-installer logs-integration]
 property :env,                    Hash
 property :verbosity,              String
 property :timeout_seconds,        Integer, defaunt: 600
@@ -15,7 +15,7 @@ action :install do
   check_required
   options = '-y'
   options += get_verbosity(new_resource.verbosity) unless new_resource.verbosity.nil? || new_resource.verbosity.empty?
-  options += stringify_install_names(new_resource.install_names)
+  options += stringify_targets(new_resource.targets)
   options += get_tags(new_resource.tags)
 
   if platform?('windows')
@@ -41,18 +41,18 @@ action_class do
     raise 'Please specify your newrelic account key' if new_resource.new_relic_account_id.nil?
   end
 
-  def stringify_install_names(install_names)
-    install_names = %w(infrastructure-agent-installer logs-integration) if install_names.nil? || install_names.empty?
-    _ = " -n #{install_names.join(',')}" unless install_names.nil? || install_names.empty?
+  def stringify_targets(targets)
+    targets = %w[infrastructure-agent-installer logs-integration] if targets.nil? || targets.empty?
+    _ = " -n #{targets.join(',')}" unless targets.nil? || targets.empty?
   end
 
   def get_verbosity(verbosity)
-    verbosity_modes = %w(debug trace)
+    verbosity_modes = %w[debug trace]
     _ = " --#{verbosity}" if verbosity_modes.include? verbosity
   end
 
   def get_tags(tags)
-    deploy_tag = 'nr_deployed_by:newrelic-chef'
+    deploy_tag = 'nr_deployed_by:chef-install'
     tags_array = []
     tags.each do |key, value|
       tags_array.append("#{key}:#{value}")
