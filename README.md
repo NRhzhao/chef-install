@@ -6,11 +6,7 @@
 
 Currently, we have included Linux and Windows support for New Relic's infrastructure and logs integrations.
 
-{% note %}
-
-**Note:** Specific version of agent install is not supported, New Relic CLI will always install latest released version of agent.
-
-{% endnote %}
+### Note: Specific version of agent install is not supported, New Relic CLI will always install latest released version of agent.
 
 ## Installation
 
@@ -90,7 +86,7 @@ For releasing a new version to the Chef Supermarket follow this steps:
 * Update the version number in metadata.rb.
 * Create the github release for the new version.
 * Watch the build with the version number in Github Actions
-* If that passes, the new version should be on TBD
+* If that passes, the new version should be on Supermarket under `newrelic-install`
 
 ## Privacy
 
