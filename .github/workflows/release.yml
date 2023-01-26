@@ -1,4 +1,4 @@
-name: Release workflow
+name: Release
 
 permissions: write-all
 on:
@@ -14,7 +14,7 @@ jobs:
       - name: Install Chef Workstation
         uses: actionshub/chef-install@2.0.4
       - name: Create pem file
-        run: echo "${{ secrets.newrelic_pem }}" | base64 --decode > newrelic.pem
+        run: echo "${{ secrets.newrelic_pem }}" > newrelic.pem
         shell: bash 
       - name: Release
         run: berks vendor cookbooks && knife supermarket share newrelic-install
