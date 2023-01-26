@@ -17,5 +17,5 @@ jobs:
         run: echo "${{ secrets.newrelic_pem }}" > newrelic.pem
         shell: bash 
       - name: Release
-        run: berks vendor cookbooks && knife supermarket share newrelic-install
+        run: knife supermarket share newrelic-install
         shell: bash
