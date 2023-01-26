@@ -16,6 +16,9 @@ jobs:
       - name: Create pem file
         run: echo "${{ secrets.newrelic_pem }}" > newrelic.pem
         shell: bash 
+      - name: LS
+        run: la
+        shell: bash
       - name: Release
         run: knife supermarket share newrelic-install
         shell: bash
